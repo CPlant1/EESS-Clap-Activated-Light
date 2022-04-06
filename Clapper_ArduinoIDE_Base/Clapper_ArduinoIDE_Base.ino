@@ -14,7 +14,7 @@ int threshold;
 
 // YOU MAY WANT TO CHANGE HERE
 // If clap is too sensitive, increase margin. Else, decrease margin
-int margin = 10;
+int margin = 20;
 
 
 //Setup Pins
@@ -53,17 +53,19 @@ void loop() {
   }
    // Step 1: Detect a low signal
     if(eventstatus==1){  
-    for(int k =10; k>0;k--){
-      delay(10);
+    for(int k =100; k>0;k--){
+      delay(1);
       sensorvalue=analogRead(inputPin);
-      if(sensorvalue<sensorthresholdlow){
+      if(sensorvalue<threshold){
         eventstatus=2; 
+        
         break;
       }      
     }
   }
   // Step 2: Detect a high signal from second clap
   if(eventstatus==2){
+    delay(500);
     for(int n=1000;n>0;n--){
       delay(1);
       sensorvalue=analogRead(inputPin);
